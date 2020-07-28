@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Posts</h1>
+<%= form_with(url: post_collection_path, local: true) do |form| %>
 
 <table>
   <thead>
@@ -12,18 +13,24 @@
   </thead>
 
   <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.title %></td>
-        <td><%= post.description %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+      <% @posts.each do |post| %>
+        <tr>
+          <td><%= check_box_tag 'ids[]', post.id %></td>
+          <td><%= post.title %></td>
+          <td><%= post.description %></td>
+          <td><%= link_to 'Show', post %></td>
+          <td><%= link_to 'Edit', edit_post_path(post) %></td>
+          <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
   </tbody>
 </table>
 
 <br>
 
+  <%= form.submit 'Post', formmethod: :post %>
+  <%= form.submit 'Get', formmethod: :get %>
+  <%= form.submit 'Update', formmethod: :put %>
+  <%= form.submit 'Delete', formmethod: :delete %>
+<% end %>
 <%= link_to 'New Post', new_post_path %>
