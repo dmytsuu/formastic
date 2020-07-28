@@ -1,4 +1,4 @@
-class PostCollectionsController < ApplicationController
+class PostCollectionController < ApplicationController
   def create; end
   def show; end
   def update; end
